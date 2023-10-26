@@ -30,7 +30,7 @@ class Main(tk.Frame):
 
         # Кнопка редактирования
         self.upd_img = tk.PhotoImage(file='./image/update.png')
-        btn_upd = tk.Button(toolbar, text='Добавить',
+        btn_upd = tk.Button(toolbar,
                                     image=self.upd_img,
                                     bg='#d7d7d7', bd=0,
                                     command=self.open_update)
@@ -38,7 +38,7 @@ class Main(tk.Frame):
 
         # Кнопка удаления
         self.del_img = tk.PhotoImage(file='./image/delete.png')
-        btn_del = tk.Button(toolbar, text='Добавить',
+        btn_del = tk.Button(toolbar,
                                     image=self.del_img,
                                     bg='#d7d7d7', bd=0,
                                     command=self.del_records)
@@ -46,7 +46,7 @@ class Main(tk.Frame):
 
         # Кнопка поиска
         self.search_img = tk.PhotoImage(file='./image/search.png')
-        btn_search = tk.Button(toolbar, text='Добавить',
+        btn_search = tk.Button(toolbar,
                                     image=self.search_img,
                                     bg='#d7d7d7', bd=0,
                                     command=self.open_search)
@@ -54,7 +54,7 @@ class Main(tk.Frame):
 
         # Кнопка обновления
         self.refresh_img = tk.PhotoImage(file='./image/refresh.png')
-        btn_refresh = tk.Button(toolbar, text='Добавить',
+        btn_refresh = tk.Button(toolbar,
                                     image=self.refresh_img,
                                     bg='#d7d7d7', bd=0,
                                     command=self.view_records)
@@ -253,7 +253,7 @@ class Update(Child):
     # метод автозаполнения формы
     def default_data(self):
         id = self.view.tree.set(self.view.tree.selection()[0], '#1')
-        self.db.cur.execute('SELECT *  FROM users WHERE id = ?', id)
+        self.db.cur.execute('SELECT *  FROM users WHERE id = ?', (id, ))
         row = self.db.cur.fetchone()
         self.entry_name.insert(0, row[1])
         self.entry_phone.insert(0, row[2])
